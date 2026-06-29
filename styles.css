@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #10b981;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #64748b;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+body.dark {
+    background-color: #0f172a;
+    color: var(--light);
+}
+
+.dark .dark\:bg-dark {
+    background-color: #1e293b;
+}
+
+.dark .dark\:text-light {
+    color: var(--light);
+}
+
+.dark .dark\:border-gray-700 {
+    border-color: #334155;
+}
+
+#hero {
+position: relative;
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+text-align: center;
+padding: 20px;
+}
+/* Starfield container - behind everything */
+#starfield-container {
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 100%;
+z-index: 0;
+pointer-events: none;
+}
+/* Globe container - above starfield */
+#threejs-container {
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 100%;
+z-index: 1;
+pointer-events: none;
+}
+/* Content on top */
+#content {
+position: relative;
+z-index: 2;
+max-width: 700px;
+padding: 20px;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+}
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.skill-bar {
+    transition: width 1.5s ease-out;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    border: 3px solid var(--light);
+}
+
+.dark .timeline-item::before {
+    border-color: #0f172a;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--primary);
+}
+
+#toggleDarkMode {
+    transition: all 0.3s ease;
+}
+
+#toggleDarkMode:hover {
+    transform: rotate(30deg);
+}
+
+#threejs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.floating {
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 15px); }
+    100% { transform: translate(0, -0px); }
+}
+
+.counter {
+    font-variant-numeric: tabular-nums;
+}
+
+.project-card {
+    perspective: 1000px;
+}
+
+.project-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover .project-card-inner {
+    transform: rotateY(180deg);
+}
+
+.project-card-front, .project-card-back {
+    backface-visibility: hidden;
+}
+
+.project-card-back {
+    transform: rotateY(180deg);
+}
+
+.testimonial-card {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.active-nav::after {
+    width: 100%;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+}
+
+
+
+
+
+
+  /* Container perspective */
+.project-card {
+perspective: 1500px;
+}
+
+/* Card inner container - the flipping element */
+.project-card-inner {
+position: relative;
+width: 100%;
+min-height: 18rem; /* minimum height */
+border-radius: 1rem;
+transition: transform 0.8s;
+transform-style: preserve-3d;
+cursor: pointer;
+box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+background-color: #fff;
+}
+
+/* Flip on hover or keyboard focus */
+.project-card:hover .project-card-inner,
+.project-card:focus-within .project-card-inner {
+transform: rotateY(180deg);
+}
+
+/* Front and back faces - same size & position */
+.project-card-front,
+.project-card-back {
+position: absolute;
+inset: 0;
+border-radius: 1rem;
+backface-visibility: hidden;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+/* Front face styling */
+.project-card-front {
+background-color: #f3f4f6; /* light gray */
+}
+
+/* Back face styling */
+.project-card-back {
+background: linear-gradient(135deg, #3b82f6, #10b981);
+color: white;
+transform: rotateY(180deg);
+padding: 1.5rem;
+box-sizing: border-box;
+overflow-y: auto; /* scroll only if content taller than card */
+scroll-behavior: smooth;
+}
+
+/* Image container on front */
+.card-image-container {
+position: relative;
+flex: 1 1 auto;
+border-radius: 1rem 1rem 0 0;
+overflow: hidden;
+}
+
+.card-image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+border-radius: 1rem 1rem 0 0;
+transition: transform 0.5s ease;
+}
+
+.card-image-container:hover img {
+transform: scale(1.05);
+}
+
+/* Overlay gradient and title on front image */
+.card-gradient-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+padding: 1rem 1.5rem;
+background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+border-radius: 0 0 1rem 1rem;
+}
+
+.card-title {
+color: white;
+font-size: 1.25rem;
+font-weight: 700;
+margin: 0;
+}
+
+/* Back face content container */
+.back-content {
+flex: 1 1 auto;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+}
+
+/* Back face title */
+.project-card-back h3 {
+margin: 0 0 0.75rem 0;
+font-size: 1.5rem;
+font-weight: 700;
+}
+
+/* Back face paragraph */
+.project-card-back p {
+margin: 0 0 1rem 0;
+font-size: 1rem;
+line-height: 1.4;
+}
+
+/* Tags container */
+.tags {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+margin-bottom: 1rem;
+}
+
+/* Individual tag style */
+.tag {
+background-color: rgba(255 255 255 / 0.3);
+color: white;
+padding: 0.25rem 0.75rem;
+border-radius: 9999px;
+font-size: 0.8rem;
+font-weight: 600;
+user-select: none;
+}
+
+/* Button on back */
+.btn-view {
+margin-top: auto; /* push button to bottom */
+align-self: center;
+background-color: white;
+color: #3b82f6;
+padding: 0.5rem 1.5rem;
+font-weight: 600;
+border-radius: 9999px;
+text-decoration: none;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-view:hover,
+.btn-view:focus {
+background-color: #2563eb; /* darker blue */
+color: white;
+}
+
+/* Responsive grid container */
+.grid-container {
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+gap: 2rem;
+}
+@media(min-width: 640px) {
+.grid-container {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+@media(min-width: 1024px) {
+.grid-container {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+/* Dark mode overrides */
+body.dark {
+background-color: #111827;
+color: white;
+}
+body.dark .project-card-front {
+background-color: #1f2937;
+}
